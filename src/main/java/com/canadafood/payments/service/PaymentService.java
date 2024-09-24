@@ -17,6 +17,7 @@ public class PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
 
+    @Autowired
     private ModelMapper modelMapper;
 
     public Page<PaymentDto> getAll(Pageable pageable) {
@@ -32,7 +33,7 @@ public class PaymentService {
     }
 
     public PaymentDto create(PaymentDto paymentDto) {
-        var payment = modelMapper.map(paymentDto, Payment.class);
+        Payment payment = modelMapper.map(paymentDto, Payment.class);
         payment.setStatus(Status.CREATED);
         paymentRepository.save(payment);
 

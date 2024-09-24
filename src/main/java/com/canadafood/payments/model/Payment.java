@@ -38,7 +38,7 @@ public class Payment {
 
     @NotBlank
     @Size(max = 7)
-    private String expirationDate;
+    private String expiration;
 
     @NotBlank
     @Size(max = 3,min = 3)

@@ -36,14 +36,14 @@ public class PaymentController {
     @PostMapping
     public ResponseEntity<PaymentDto> createPayment(@RequestBody @Valid PaymentDto paymentDto, UriComponentsBuilder uriBuilder) {
         var newPaymentDto = paymentService.create(paymentDto);
-        URI path = uriBuilder.path("payment/{id}").buildAndExpand(paymentDto.id()).toUri();
+        URI path = uriBuilder.path("payment/{id}").buildAndExpand(paymentDto.getId()).toUri();
 
         return ResponseEntity.created(path).body(newPaymentDto);
     }
 
     @PutMapping
     public ResponseEntity<PaymentDto> updatePayment(@RequestBody @Valid PaymentDto paymentDto) {
-        PaymentDto updatedPaymentDto = paymentService.update(paymentDto.id(), paymentDto);
+        PaymentDto updatedPaymentDto = paymentService.update(paymentDto.getId(), paymentDto);
         return ResponseEntity.ok(updatedPaymentDto);
     }
 
