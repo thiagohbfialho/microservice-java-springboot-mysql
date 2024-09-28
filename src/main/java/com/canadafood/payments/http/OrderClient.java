@@ -1,5 +1,6 @@
 package com.canadafood.payments.http;
 
+import com.canadafood.payments.model.OrderDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,5 +11,8 @@ public interface OrderClient {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/orders/{id}/paid")
     void updatePayment(@PathVariable Long id);
+
+    @RequestMapping(method = RequestMethod.GET, value = "/orders/{id}")
+    OrderDto getOrder(@PathVariable Long id);
 
 }
