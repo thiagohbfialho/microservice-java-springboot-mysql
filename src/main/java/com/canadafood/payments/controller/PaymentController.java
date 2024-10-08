@@ -44,8 +44,7 @@ public class PaymentController {
         var newPaymentDto = paymentService.create(paymentDto);
         URI path = uriBuilder.path("payment/{id}").buildAndExpand(paymentDto.getId()).toUri();
 
-        Message message = new Message(("Created payment with id " + newPaymentDto.getId()).getBytes());
-        rabbitTemplate.send("payment.completed", message);
+        rabbitTemplate.convertAndSend("payment.completed", newPaymentDto);
         return ResponseEntity.created(path).body(newPaymentDto);
     }
 
